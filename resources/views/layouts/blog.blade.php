@@ -48,9 +48,9 @@
             <div class="flex items-center justify-between h-16">
 
                 {{-- Logo / Nome --}}
-                <a href="{{ route('home') }}" class="flex items-center gap-3 group">
+                <a href="{{ route('home') }}" class="flex items-center gap-3 group" aria-label="Imóveis da Caixa — Página Inicial">
                     <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z" />
                         </svg>
                     </div>
@@ -67,9 +67,9 @@
                     {{-- Menu de Categorias --}}
                     @if(isset($navCategories) && $navCategories->count())
                         <div class="relative group">
-                            <button class="text-white/90 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1">
+                            <button aria-label="Abrir menu de categorias" aria-expanded="false" class="text-white/90 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1">
                                 Categorias
-                                <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
@@ -97,8 +97,8 @@
                 </a>
 
                 {{-- Mobile menu toggle --}}
-                <button id="mobile-menu-btn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <button id="mobile-menu-btn" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
@@ -106,7 +106,7 @@
         </div>
 
         {{-- Mobile menu --}}
-        <div id="mobile-menu" class="md:hidden hidden border-t border-white/10">
+        <nav id="mobile-menu" class="md:hidden hidden border-t border-white/10" aria-label="Menu de navegação mobile">
             <div class="px-4 py-4 space-y-2">
                 <a href="{{ route('blog.index') }}" class="block text-white/90 hover:text-white hover:bg-white/10 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors">Blog</a>
                 @if(isset($navCategories) && $navCategories->count())
@@ -119,7 +119,7 @@
                     🔍 Buscar Imóveis da Caixa
                 </a>
             </div>
-        </div>
+        </nav>
     </header>
 
     {{-- ═══════════════════════════════════════════════════════════════════
@@ -199,7 +199,10 @@
     {{-- Mobile menu toggle script --}}
     <script>
         document.getElementById('mobile-menu-btn')?.addEventListener('click', function () {
-            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+            const menu = document.getElementById('mobile-menu');
+            menu?.classList.toggle('hidden');
+            const isExpanded = !menu?.classList.contains('hidden');
+            this.setAttribute('aria-expanded', isExpanded);
         });
     </script>
 </body>

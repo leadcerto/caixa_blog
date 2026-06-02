@@ -21,11 +21,11 @@
 ═══════════════════════════════════════════════════════════ --}}
 <section class="bg-gradient-to-br from-caixa-blue via-caixa-blue-dark to-blue-900 py-16 sm:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block text-xs font-bold uppercase tracking-widest text-caixa-orange mb-4">Guia Oficial</span>
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-amber-300 mb-4">Guia Oficial</span>
         <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight mb-6">
             Venda de Imóveis da <span class="text-caixa-orange">CAIXA</span>
         </h1>
-        <p class="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto mb-8">
+        <p class="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-8">
             Imóveis com até <strong class="text-white">70% de desconto</strong>, entrada de apenas <strong class="text-white">5%</strong>, sem comissão de corretor e com assessoria gratuita. Saiba tudo aqui.
         </p>
         <a href="#cadastro"
@@ -525,23 +525,23 @@
             <input type="hidden" name="page_name" value="Venda de Imóveis da CAIXA">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label class="block text-sm font-semibold text-text-primary mb-1">Nome completo</label>
-                    <input type="text" name="name" required placeholder="Seu nome"
+                    <label for="contact-name" class="block text-sm font-semibold text-text-primary mb-1">Nome completo</label>
+                    <input id="contact-name" type="text" name="name" required placeholder="Seu nome"
                         class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-surface focus:outline-none focus:ring-2 focus:ring-caixa-blue focus:border-transparent">
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-text-primary mb-1">E-mail</label>
-                    <input type="email" name="email" required placeholder="seu@email.com"
+                    <label for="contact-email" class="block text-sm font-semibold text-text-primary mb-1">E-mail</label>
+                    <input id="contact-email" type="email" name="email" required placeholder="seu@email.com"
                         class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-surface focus:outline-none focus:ring-2 focus:ring-caixa-blue focus:border-transparent">
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-text-primary mb-1">WhatsApp</label>
-                    <input type="tel" name="whatsapp" required placeholder="(21) 99999-9999"
+                    <label for="contact-whatsapp" class="block text-sm font-semibold text-text-primary mb-1">WhatsApp</label>
+                    <input id="contact-whatsapp" type="tel" name="whatsapp" required placeholder="(21) 99999-9999"
                         class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-surface focus:outline-none focus:ring-2 focus:ring-caixa-blue focus:border-transparent">
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-text-primary mb-1">Melhor horário</label>
-                    <select name="horario" class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-surface focus:outline-none focus:ring-2 focus:ring-caixa-blue">
+                    <label for="horario" class="block text-sm font-semibold text-text-primary mb-1">Melhor horário</label>
+                    <select id="horario" name="horario" class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-surface focus:outline-none focus:ring-2 focus:ring-caixa-blue">
                         <option value="">Selecione</option>
                         <option>08h às 12h</option>
                         <option>12h às 16h</option>
@@ -560,8 +560,8 @@
                     </div>
                 </div>
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-semibold text-text-primary mb-1">Mensagem (opcional)</label>
-                    <textarea name="message" rows="3" placeholder="Descreva o imóvel que você está procurando..."
+                    <label for="contact-message" class="block text-sm font-semibold text-text-primary mb-1">Mensagem (opcional)</label>
+                    <textarea id="contact-message" name="message" rows="3" placeholder="Descreva o imóvel que você está procurando..."
                         class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-surface focus:outline-none focus:ring-2 focus:ring-caixa-blue resize-none"></textarea>
                 </div>
             </div>
