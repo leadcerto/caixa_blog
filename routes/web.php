@@ -20,6 +20,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/venda-imoveis-caixa', fn() => view('venda-imoveis-caixa'))->name('venda.imoveis');
 
 
 // Blog público
