@@ -16,27 +16,18 @@
 
 @push('head')
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "{{ addslashes($post->title) }}",
-    "description": "{{ addslashes($post->hook_excerpt ?? Str::limit(strip_tags($post->content), 160)) }}",
-    "url": "{{ route('blog.show', $post->slug) }}",
-    "datePublished": "{{ $post->published_at?->toISOString() }}",
-    "dateModified": "{{ $post->updated_at->toISOString() }}",
-    @if($post->featured_image)
-    "image": "{{ asset('storage/' . $post->featured_image) }}",
-    @endif
-    "author": {
-        "@type": "Person",
-        "name": "{{ addslashes($post->author->name ?? 'Redação Imóveis da Caixa') }}"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "Imóveis da Caixa",
-        "url": "{{ config('app.url') }}"
-    }
-}
+{!! json_encode(array_filter([
+    '@context'      => 'https://schema.org',
+    '@type'         => 'Article',
+    'headline'      => $post->title,
+    'description'   => $post->hook_excerpt ?? Str::limit(strip_tags($post->content), 160),
+    'url'           => route('blog.show', $post->slug),
+    'datePublished' => $post->published_at?->toISOString(),
+    'dateModified'  => $post->updated_at->toISOString(),
+    'image'         => $post->featured_image ? asset('storage/' . $post->featured_image) : null,
+    'author'        => ['@type' => 'Person', 'name' => $post->author->name ?? 'Redação Imóveis da Caixa'],
+    'publisher'     => ['@type' => 'Organization', 'name' => 'Imóveis da Caixa', 'url' => config('app.url')],
+]), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush
 
