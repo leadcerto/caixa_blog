@@ -520,8 +520,9 @@
             </ul>
         </div>
 
-        <form action="#" method="POST" class="bg-surface border border-border rounded-2xl p-6 sm:p-8 space-y-5">
+        <form action="{{ route('contato.store') }}" method="POST" class="bg-surface border border-border rounded-2xl p-6 sm:p-8 space-y-5">
             @csrf
+            <input type="hidden" name="page_name" value="Venda de Imóveis da CAIXA">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                     <label class="block text-sm font-semibold text-text-primary mb-1">Nome completo</label>

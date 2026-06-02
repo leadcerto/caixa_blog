@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgencyPublicController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\AgencyController as AdminAgencyController;
@@ -21,6 +22,7 @@ Route::get('/', function () {
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/venda-imoveis-caixa', fn() => view('venda-imoveis-caixa'))->name('venda.imoveis');
+Route::post('/contato', [ContactController::class, 'store'])->name('contato.store');
 
 
 // Blog público
