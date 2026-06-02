@@ -182,7 +182,9 @@
                     <h3 class="font-bold text-lg mb-4 text-white">Links Úteis</h3>
                     <ul class="space-y-2">
                         <li><a href="{{ route('blog.index') }}" class="text-gray-400 hover:text-caixa-orange text-sm transition-colors">Blog</a></li>
+                        <li><a href="{{ route('venda.imoveis') }}" class="text-gray-400 hover:text-caixa-orange text-sm transition-colors">Venda de Imóveis CAIXA</a></li>
                         <li><a href="https://venda.imoveisdacaixa.com.br" target="_blank" rel="noopener" class="text-gray-400 hover:text-caixa-orange text-sm transition-colors">Buscar Imóveis</a></li>
+                        <li><a href="{{ route('privacidade') }}" class="text-gray-400 hover:text-caixa-orange text-sm transition-colors">Política de Privacidade</a></li>
                     </ul>
                 </div>
             </div>
