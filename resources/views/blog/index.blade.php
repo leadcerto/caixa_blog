@@ -1,7 +1,7 @@
 @extends('layouts.blog')
 
-@section('title', 'Blog — House Flipping de Imóveis da Caixa')
-@section('meta_description', 'Artigos educacionais sobre House Flipping, arrematação, venda direta e licitações de imóveis da Caixa Econômica Federal.')
+@section('title', 'Flipping Imobiliário — Imóveis da Caixa')
+@section('meta_description', 'Aprenda a comprar barato e vender rápido com alta margem de lucratividade. Estratégias de flipping imobiliário com imóveis da Caixa Econômica Federal.')
 
 @section('content')
 
@@ -11,10 +11,10 @@
     <section class="bg-gradient-to-br from-caixa-blue via-caixa-blue-dark to-blue-900 py-16 sm:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">
-                Blog — House Flipping
+                Flipping Imobiliário
             </h1>
             <p class="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto">
-                Aprenda tudo sobre arrematação, venda direta e licitações de <strong class="text-caixa-orange">imóveis da Caixa</strong>.
+                Aprenda tudo sobre comprar barato e como vender rápido com <strong class="text-caixa-orange">alta margem de lucratividade</strong>.
             </p>
         </div>
     </section>
