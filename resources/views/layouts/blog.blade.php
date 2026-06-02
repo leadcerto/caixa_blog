@@ -29,10 +29,12 @@
 
     @stack('head')
 
-    {{-- Google Fonts: Inter --}}
+    {{-- Google Fonts: Inter (async — não bloqueia renderização) --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -180,8 +182,7 @@
     </footer>
 
     {{-- Botão flutuante WhatsApp --}}
-    @php $wpp = preg_replace('/\D/', '', env('APP_COMPANY_WHATSAPP', '21997882950')); @endphp
-    <a href="https://wa.me/{{ $wpp }}?text=Ol%C3%A1%2C%20vim%20pelo%20site%20Im%C3%B3veis%20da%20Caixa%20e%20gostaria%20de%20atendimento."
+    <a href="https://wa.me/5521997882950?text=Ol%C3%A1%2C%20vim%20pelo%20site%20Im%C3%B3veis%20da%20Caixa%20e%20gostaria%20de%20atendimento."
        target="_blank" rel="noopener"
        aria-label="Atendimento pelo WhatsApp"
        class="z-50 flex items-center gap-3 text-white font-bold px-6 py-3 rounded-full transition-all duration-300"
