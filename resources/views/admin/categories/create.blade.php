@@ -1,0 +1,62 @@
+@extends('layouts.admin')
+
+@section('admin_title', 'Nova Categoria')
+
+@section('admin_content')
+
+    <div class="mb-8">
+        <a href="{{ route('admin.categories.index') }}" class="text-sm text-text-muted hover:text-caixa-blue transition-colors mb-2 inline-block">← Voltar para Categorias</a>
+        <h1 class="text-2xl font-bold text-text-primary">Nova Categoria</h1>
+        <p class="text-sm text-text-secondary mt-1">Crie um tema para organizar os artigos do blog</p>
+    </div>
+
+    @if($errors->any())
+        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm mb-6">
+            <p class="font-semibold mb-1">Corrija os campos abaixo:</p>
+            <ul class="list-disc list-inside space-y-0.5">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('admin.categories.store') }}" class="max-w-xl">
+        @csrf
+
+        <div class="bg-surface rounded-xl border border-border p-6 space-y-5">
+
+            <div>
+                <label for="name" class="block text-sm font-semibold text-text-primary mb-1.5">
+                    Nome <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" required
+                       placeholder="Ex: Arrematação de Imóveis"
+                       class="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-caixa-blue focus:border-transparent @error('name') border-red-400 @enderror">
+                <p class="text-xs text-text-muted mt-1.5">O slug será gerado automaticamente.</p>
+            </div>
+
+            <div>
+                <label for="description" class="block text-sm font-semibold text-text-primary mb-1.5">
+                    Descrição SEO
+                </label>
+                <textarea id="description" name="description" rows="4"
+                          placeholder="Texto exibido no topo da página de listagem desta categoria. Otimize para o Google: descreva o tema em 1–2 frases claras com palavras-chave relevantes."
+                          class="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-caixa-blue focus:border-transparent resize-none @error('description') border-red-400 @enderror">{{ old('description') }}</textarea>
+                <p class="text-xs text-text-muted mt-1.5">Máximo 500 caracteres. Será exibido como introdução na página <code>/blog/categoria/{slug}</code>.</p>
+            </div>
+
+        </div>
+
+        <div class="flex items-center gap-4 mt-6">
+            <button type="submit"
+                    class="bg-caixa-blue hover:bg-caixa-blue-dark text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg">
+                Criar Categoria
+            </button>
+            <a href="{{ route('admin.categories.index') }}" class="text-sm text-text-muted hover:text-text-primary transition-colors">
+                Cancelar
+            </a>
+        </div>
+    </form>
+
+@endsection
