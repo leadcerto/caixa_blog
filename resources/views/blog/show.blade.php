@@ -2,8 +2,43 @@
 
 @section('title', $post->title . ' — Imóveis da Caixa')
 @section('meta_description', $post->hook_excerpt ?? Str::limit(strip_tags($post->content), 160))
+@section('canonical_url', route('blog.show', $post->slug))
 @section('og_type', 'article')
 @section('og_image', $post->featured_image ? asset('storage/' . $post->featured_image) : '')
+
+@section('og_article_meta')
+    <meta property="article:published_time" content="{{ $post->published_at?->toISOString() }}">
+    <meta property="article:modified_time" content="{{ $post->updated_at->toISOString() }}">
+    @if($post->category)
+        <meta property="article:section" content="{{ $post->category->name }}">
+    @endif
+@endsection
+
+@push('head')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ addslashes($post->title) }}",
+    "description": "{{ addslashes($post->hook_excerpt ?? Str::limit(strip_tags($post->content), 160)) }}",
+    "url": "{{ route('blog.show', $post->slug) }}",
+    "datePublished": "{{ $post->published_at?->toISOString() }}",
+    "dateModified": "{{ $post->updated_at->toISOString() }}",
+    @if($post->featured_image)
+    "image": "{{ asset('storage/' . $post->featured_image) }}",
+    @endif
+    "author": {
+        "@type": "Person",
+        "name": "{{ addslashes($post->author->name ?? 'Redação Imóveis da Caixa') }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Imóveis da Caixa",
+        "url": "{{ config('app.url') }}"
+    }
+}
+</script>
+@endpush
 
 @section('content')
 

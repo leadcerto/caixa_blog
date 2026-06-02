@@ -1,6 +1,10 @@
 *.log
 .DS_Store
 .env
+/google-business/
+client_secret_*.json
+*.docx
+*.pdf
 .env.backup
 .env.production
 .phpactor.json

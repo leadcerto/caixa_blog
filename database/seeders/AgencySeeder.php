@@ -9,7 +9,12 @@ use Illuminate\Support\Str;
 class AgencySeeder extends Seeder
 {
     /**
-     * Importa agências do arquivo de dados TXT.
+     * Importa agências de um ou mais arquivos TXT.
+     *
+     * Uso padrão:  php artisan db:seed --class=AgencySeeder
+     * Estado único: php artisan db:seed --class=AgencySeeder -- --state=sp
+     * Todos os arquivos em database/data/agencias-*.txt são importados
+     * quando nenhum --state é informado.
      *
      * Formato do bloco:
      *   NOME DA AGÊNCIA, UF
@@ -21,44 +26,63 @@ class AgencySeeder extends Seeder
      */
     public function run(): void
     {
-        $filePath = database_path('data/agencias-rj.txt');
+        $state = $this->command->option('state');
 
-        if (! file_exists($filePath)) {
-            $this->command->error("Arquivo não encontrado: {$filePath}");
+        $files = $state
+            ? [database_path("data/agencias-{$state}.txt")]
+            : glob(database_path('data/agencias-*.txt'));
+
+        if (empty($files)) {
+            $this->command->error('Nenhum arquivo de agências encontrado em database/data/.');
             return;
         }
 
-        $content = file_get_contents($filePath);
-        $agencies = $this->parseAgencies($content);
+        $totalCreated = 0;
+        $totalSkipped = 0;
 
-        $created = 0;
-        $skipped = 0;
-        $slugCounts = []; // Para gerar slugs únicos
-
-        foreach ($agencies as $data) {
-            // Gera slug SEO: {bairro}-{cidade}-{estado}
-            $baseSlug = Str::slug("{$data['neighborhood']}-{$data['city']}-{$data['state']}");
-
-            // Controla duplicatas de slug (ex: vários em CENTRO-rio-de-janeiro-rj)
-            if (isset($slugCounts[$baseSlug])) {
-                $slugCounts[$baseSlug]++;
-                $slug = "{$baseSlug}-{$slugCounts[$baseSlug]}";
-            } else {
-                $slugCounts[$baseSlug] = 0;
-                $slug = $baseSlug;
-            }
-
-            // Evita duplicar se já existir no banco
-            if (Agency::where('agency_number', $data['agency_number'])->exists()) {
-                $skipped++;
+        foreach ($files as $filePath) {
+            if (! file_exists($filePath)) {
+                $this->command->warn("Arquivo não encontrado: {$filePath}");
                 continue;
             }
 
-            Agency::create(array_merge($data, ['slug' => $slug]));
-            $created++;
+            $label = basename($filePath);
+            $this->command->line("→ Importando {$label}...");
+
+            $content = file_get_contents($filePath);
+            $agencies = $this->parseAgencies($content);
+
+            $created = 0;
+            $skipped = 0;
+            $slugCounts = [];
+
+            foreach ($agencies as $data) {
+                // Gera slug SEO: {bairro}-{cidade}-{estado}
+                $baseSlug = Str::slug("{$data['neighborhood']}-{$data['city']}-{$data['state']}");
+
+                if (isset($slugCounts[$baseSlug])) {
+                    $slugCounts[$baseSlug]++;
+                    $slug = "{$baseSlug}-{$slugCounts[$baseSlug]}";
+                } else {
+                    $slugCounts[$baseSlug] = 0;
+                    $slug = $baseSlug;
+                }
+
+                if (Agency::where('agency_number', $data['agency_number'])->exists()) {
+                    $skipped++;
+                    continue;
+                }
+
+                Agency::create(array_merge($data, ['slug' => $slug]));
+                $created++;
+            }
+
+            $this->command->info("  ✓ {$label}: {$created} criadas, {$skipped} já existiam.");
+            $totalCreated += $created;
+            $totalSkipped += $skipped;
         }
 
-        $this->command->info("✓ Agências importadas: {$created} criadas, {$skipped} já existiam.");
+        $this->command->info("Total: {$totalCreated} criadas, {$totalSkipped} já existiam.");
     }
 
     /**

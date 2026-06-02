@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'google_business' => [
+        'client_id'      => env('GOOGLE_BUSINESS_CLIENT_ID'),
+        'client_secret'  => env('GOOGLE_BUSINESS_CLIENT_SECRET'),
+        'refresh_token'  => env('GOOGLE_BUSINESS_REFRESH_TOKEN'),
+        'account_id'     => env('GOOGLE_BUSINESS_ACCOUNT_ID'),
+    ],
+
 ];

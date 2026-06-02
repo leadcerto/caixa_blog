@@ -6,13 +6,28 @@
     <meta name="description" content="@yield('meta_description', 'Blog sobre House Flipping de Imóveis da Caixa Econômica Federal. Aprenda a arrematar, investir e lucrar com imóveis da Caixa.')">
     <meta name="robots" content="index, follow">
 
+    {{-- Canonical --}}
+    <link rel="canonical" href="@yield('canonical_url', url()->current())">
+
     {{-- Open Graph --}}
+    <meta property="og:site_name" content="Imóveis da Caixa">
+    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="@yield('title', 'Blog | Imóveis da Caixa')">
     <meta property="og:description" content="@yield('meta_description', 'Blog sobre House Flipping de Imóveis da Caixa.')">
     <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="@yield('canonical_url', url()->current())">
     <meta property="og:image" content="@yield('og_image', '')">
+    @yield('og_article_meta')
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'Blog | Imóveis da Caixa')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Blog sobre House Flipping de Imóveis da Caixa.')">
+    <meta name="twitter:image" content="@yield('og_image', '')">
 
     <title>@yield('title', 'Blog | Imóveis da Caixa')</title>
+
+    @stack('head')
 
     {{-- Google Fonts: Inter --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
