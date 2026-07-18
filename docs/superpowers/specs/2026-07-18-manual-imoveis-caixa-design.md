@@ -18,6 +18,13 @@ imóveis CAIXA, com CTA de busca de imóveis e um botão flutuante de WhatsApp e
 - 15 accordions de conteúdo (fornecido pelo usuário) sobre o processo de compra.
 - Extração do CSS de accordion (hoje duplicado) para o layout compartilhado.
 - Link "Manual de Compra" no rodapé.
+- Índice de navegação por âncoras no topo da página, apontando para cada uma das 15 seções.
+- Formulário de captação de lead ao final da página, extraído para um partial compartilhado
+  e reaproveitado também em `venda-imoveis-caixa.blade.php`.
+- JSON-LD `HowTo` na página do Manual, seguindo o padrão seguro (`json_encode` + `array_filter`)
+  já usado em `blog/show.blade.php`.
+- Link cruzado entre `manual-imoveis-caixa` e `venda-imoveis-caixa` (uma página menciona/linka
+  a outra).
 
 Fora de escopo: inclusão de páginas estáticas no `sitemap.xml` (página `venda-imoveis-caixa`
 já não está incluída hoje; manter o padrão atual — ajuste futuro separado, se solicitado).
@@ -38,9 +45,21 @@ em `routes/web.php`.
   `venda-imoveis-caixa.blade.php`.
 - **Hero:** H1 "Manual de Compra dos Imóveis da CAIXA" + botão "Busca de Imóveis" apontando
   para `https://venda.imoveisdacaixa.com.br/`, `target="_blank" rel="noopener"`.
+- **Índice de navegação:** logo após o hero, uma lista/chips com os 15 títulos das seções,
+  cada um linkando para o `id` do respectivo `<details>` (ex.: `#manual-1`). Layout simples em
+  `flex flex-wrap gap-2`, sem JS — apenas âncoras HTML (`<a href="#manual-1">`).
 - **Corpo:** 15 accordions (ver seção "Conteúdo das sanfonas" abaixo), dentro de
   `<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-14">` como nas outras
-  páginas de conteúdo.
+  páginas de conteúdo. Cada `<details>` recebe `id="manual-{n}"` para o índice funcionar.
+- **Link cruzado:** como uma seção curta logo após as 15 sanfonas e antes do formulário final,
+  um bloco de destaque linkando para `route('venda.imoveis')` — "Quer entender por que vale a
+  pena comprar um imóvel CAIXA? Veja o Guia Completo de Venda de Imóveis da CAIXA". Em
+  `venda-imoveis-caixa.blade.php`, adicionar o link recíproco no mesmo formato, logo antes do
+  formulário (seção 8 atual), apontando para `route('manual.imoveis')` — "Já decidiu comprar?
+  Veja o Manual de Compra passo a passo".
+- **Formulário de captação de lead:** ao final da página (antes do rodapé), reaproveitando o
+  partial compartilhado `resources/views/partials/lead-form.blade.php` (ver seção própria
+  abaixo).
 - **Botão flutuante:** `@section('whatsapp_float')` com `<x-whatsapp-float>` (ver abaixo),
   substituindo o botão-pílula padrão só nesta página.
 
@@ -99,13 +118,71 @@ junto de Inicial / Privacidade / Busca de Imóveis, apontando para `route('manua
 (uma única vez, compartilhado). Remover a duplicata de `venda-imoveis-caixa.blade.php`. Sem
 mudança visual.
 
+## Formulário de captação de lead (compartilhado) — `resources/views/partials/lead-form.blade.php`
+
+Hoje o formulário "Cadastro de Interesse de Compra" existe só em `venda-imoveis-caixa.blade.php`
+(linhas 505-575), com heading, texto de declaração e `page_name` fixos. Como o Manual também
+precisa desse formulário, e o conteúdo (heading/declarações) muda por página, ele vira um
+partial parametrizado via `@include`:
+
+```blade
+@include('partials.lead-form', [
+    'pageName' => 'Manual de Compra dos Imóveis da CAIXA',
+    'heading' => 'Cadastro de Interesse de Compra',
+    'subheading' => 'Preencha o formulário e um Corretor Credenciado entrará em contato pelo WhatsApp.',
+    'declarations' => [
+        'Para compra financiada é preciso aprovação antecipada de crédito',
+        'Os imóveis da CAIXA são retomados de acordo com a Lei 9.514 (alienação fiduciária)',
+        'Os imóveis só podem ser financiados pela CAIXA e não aceitam carta de consórcio',
+    ],
+])
+```
+
+O partial mantém exatamente os mesmos campos e estrutura do formulário atual (nome, e-mail,
+WhatsApp, horário, finalidade, mensagem opcional, `action="{{ route('contato.store') }}"`,
+`@csrf`, `<input type="hidden" name="page_name">`). `venda-imoveis-caixa.blade.php` passa a
+usar o mesmo partial com seus valores atuais — sem mudança visual nessa página.
+
+## JSON-LD (`HowTo`) — Manual de Compra
+
+No `@push('head')` da página do Manual, seguindo o padrão já usado em `blog/show.blade.php`
+(sem `@if`/lógica condicional dentro da tag `<script>` — só `json_encode` de um array PHP
+montado antes):
+
+```blade
+@php
+$howToSteps = collect($manual)->map(fn($item) => [
+    '@type' => 'HowToStep',
+    'name'  => $item['titulo'],
+    'url'   => route('manual.imoveis') . '#manual-' . $item['id'],
+])->all();
+@endphp
+<script type="application/ld+json">
+{!! json_encode(array_filter([
+    '@context'    => 'https://schema.org',
+    '@type'       => 'HowTo',
+    'name'        => 'Manual de Compra dos Imóveis da CAIXA',
+    'description' => 'Passo a passo completo para comprar um imóvel da CAIXA: portal, modalidades de venda, proposta, pagamento e desocupação.',
+    'step'        => $howToSteps,
+]), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
+```
+
 ## Conteúdo das sanfonas
 
 Fonte: texto completo fornecido pelo usuário ("Manual de Compra de Imóveis CAIXA — Estrutura
-para Sanfonas"), 15 seções numeradas. Cada seção vira um `<details>` no estilo já usado no
-bloco "Guia Completo" de `venda-imoveis-caixa.blade.php` (badge numerado `01`...`15` + título
-+ chevron), com conteúdo em array PHP (`@php $manual = [...]; @endphp`), no mesmo padrão já
-usado nas outras seções de accordion do projeto.
+para Sanfonas"), 15 seções numeradas. Cada seção vira um `<details id="manual-{id}">` no
+estilo já usado no bloco "Guia Completo" de `venda-imoveis-caixa.blade.php` (badge numerado
+`01`...`15` + título + chevron), com conteúdo em um array PHP associativo, para servir tanto
+o `@foreach` de renderização quanto o índice de âncoras e o JSON-LD `HowTo`:
+
+```php
+$manual = [
+    ['id' => 1, 'titulo' => 'O Portal de Venda de Imóveis CAIXA', 'html' => '...'],
+    // ... até id 15
+];
+```
 
 Regras de formatação por seção:
 
@@ -128,7 +205,7 @@ Regras de formatação por seção:
    parágrafos, seguindo o conteúdo exatamente como fornecido pelo usuário, sem resumir ou
    reescrever o texto.
 
-Lista das 15 seções (título de cada accordion):
+Lista das 15 seções (`id` / título de cada accordion — mesmo `id` usado no `<details id="manual-{id}">`, no índice de âncoras `#manual-{id}` e no `url` de cada `HowToStep`):
 
 1. O Portal de Venda de Imóveis CAIXA
 2. Modalidades de Venda
