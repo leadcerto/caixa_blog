@@ -57,8 +57,8 @@ class ManualImoveisCaixaPageTest extends TestCase
         $response->assertSee('Como Encontrar Seu Imóvel');
         $response->assertSee('Cadastro e Envio da Proposta');
         $response->assertSee('Consultando Suas Propostas');
-        $this->assertSame(10, substr_count($content, '<details id="manual-'));
-        $this->assertSame(10, substr_count($content, 'href="#manual-'));
+        $this->assertSame(15, substr_count($content, '<details id="manual-'));
+        $this->assertSame(15, substr_count($content, 'href="#manual-'));
     }
 
     public function test_manual_page_renders_sections_six_to_ten(): void
@@ -72,7 +72,23 @@ class ManualImoveisCaixaPageTest extends TestCase
         $response->assertSee('Visita e Situação do Imóvel');
         $response->assertSee('Desocupação do Imóvel');
         $response->assertSee('Formas de Pagamento Aceitas');
-        $this->assertSame(10, substr_count($content, '<details id="manual-'));
-        $this->assertSame(10, substr_count($content, 'href="#manual-'));
+        $this->assertSame(15, substr_count($content, '<details id="manual-'));
+        $this->assertSame(15, substr_count($content, 'href="#manual-'));
+    }
+
+    public function test_manual_page_renders_all_fifteen_sections(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+        $content = $response->getContent();
+
+        $response->assertSee('id="manual-15"', false);
+        $response->assertSee('Financiamento Imobiliário — Requisitos e Documentos');
+        $response->assertSee('Despesas de Compra');
+        $response->assertSee('Regras de Despesas de Condomínio');
+        $response->assertSee('Despesas de Tributos e IPTU');
+        $response->assertSee('Prazos Importantes (Resumo)');
+        $response->assertSee('Liminar de desocupação judicial: possibilidade de 60 dias.');
+        $this->assertSame(15, substr_count($content, '<details id="manual-'));
+        $this->assertSame(15, substr_count($content, 'href="#manual-'));
     }
 }

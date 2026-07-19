@@ -276,6 +276,98 @@
                 </ul>
             ',
         ],
+        [
+            'id' => 11,
+            'titulo' => 'Financiamento Imobiliário — Requisitos e Documentos',
+            'html' => '
+                <h4 class="font-bold text-text-primary mt-2 mb-2">Requisitos</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Sem restrição de crédito</li>
+                    <li>Renda comprovada</li>
+                    <li>Valor em dinheiro para entrada + valor para pagar a documentação do imóvel</li>
+                </ul>
+
+                <h4 class="font-bold text-text-primary mt-5 mb-2">Documentação</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Documentação pessoal</li>
+                    <li>Comprovantes de renda</li>
+                    <li>Extrato bancário das contas</li>
+                </ul>
+
+                <h4 class="font-bold text-text-primary mt-5 mb-2">Observações importantes</h4>
+                <p>Precisamos saber o valor disponível em dinheiro para definir o teto do imóvel. Quanto menor o percentual financiado, maior o desconto na taxa de juros.</p>
+                <p class="mt-2">O FGTS não serve como entrada — ele abate o saldo devedor e diminui o valor financiado.</p>
+
+                <h4 class="font-bold text-text-primary mt-5 mb-2">Pré-aprovação obrigatória</h4>
+                <p>A CAIXA exige pré-aprovação de crédito antes da proposta. Tratamos disso pelo WhatsApp; após a aprovação, você recebe um código para preencher no formulário de proposta.</p>
+            ',
+        ],
+        [
+            'id' => 12,
+            'titulo' => 'Despesas de Compra',
+            'html' => '
+                <p>Há dois tipos: condomínio e tributos + registro do imóvel.</p>
+                <ul class="list-disc list-inside space-y-2 mt-3">
+                    <li><strong>Leilão:</strong> comprador paga a comissão do leiloeiro e todas as despesas de condomínio e tributos (confira o edital).</li>
+                    <li><strong>Licitação Aberta:</strong> comprador paga parte das despesas de condomínio e o total de tributos (confira a ficha).</li>
+                    <li><strong>Venda Direta:</strong> conforme a ficha do imóvel — geralmente a CAIXA paga parte ou toda a dívida de condomínio/tributos (confira a ficha).</li>
+                    <li><strong>Em todas as modalidades:</strong> o registro do imóvel é do comprador, que deve enviar cópia de RGI e IPTU em até 60 dias para a baixa de compra.</li>
+                </ul>
+            ',
+        ],
+        [
+            'id' => 13,
+            'titulo' => 'Regras de Despesas de Condomínio',
+            'html' => '
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Responsabilidade do comprador até 10% do valor de avaliação do imóvel.</li>
+                    <li>A CAIXA paga apenas o que exceder esse limite de 10%.</li>
+                    <li>Não temos o valor exato das dívidas — solicite à administradora.</li>
+                    <li>Investidores costumam reservar 10% do débito nas custas do investimento.</li>
+                    <li>Na prática, o comprador pode negociar com a administradora; o que passar de 10% a CAIXA paga integralmente após envio do RGI e IPTU em nome do comprador.</li>
+                </ul>
+                <p class="mt-3 text-sm bg-caixa-blue/5 border border-caixa-blue/20 px-4 py-3 rounded-lg">
+                    <strong>Exemplo:</strong> imóvel avaliado em R$ 253.000,00 → despesa máxima de condomínio para o comprador é R$ 25.300,00 (o excedente a CAIXA paga). A dívida de IPTU de R$ 4.535,00 é de responsabilidade do comprador.
+                </p>
+            ',
+        ],
+        [
+            'id' => 14,
+            'titulo' => 'Despesas de Tributos e IPTU',
+            'html' => '
+                <h4 class="font-bold text-text-primary mt-2 mb-2">Regra geral</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Todas as despesas de tributos são do comprador (confira sempre na proposta).</li>
+                    <li>Abrange IPTU, taxa de incêndio, laudêmio e outros — o foco principal é o IPTU.</li>
+                    <li>Todas as dívidas de IPTU são de responsabilidade do comprador em todas as modalidades.</li>
+                </ul>
+
+                <h4 class="font-bold text-text-primary mt-5 mb-2">Inscrição imobiliária</h4>
+                <p>Com esse número, consulte no site da prefeitura eventuais dívidas de IPTU e valores.</p>
+                <p class="mt-2">Se não constar na ficha, o comprador deve buscar diretamente na prefeitura para saber dívidas, imprimir documentação e alterar a titularidade do IPTU.</p>
+
+                <h4 class="font-bold text-text-primary mt-5 mb-2">Quando a inscrição imobiliária não é informada — Rio de Janeiro</h4>
+                <p>Buscar na Secretaria de Fazenda nos pontos:</p>
+                <ul class="list-disc list-inside space-y-1 mt-2">
+                    <li><strong>Centro:</strong> Rua Afonso Cavalcanti, 455 – prédio anexo – térreo</li>
+                    <li><strong>Barra Shopping:</strong> Av. das Américas, 4.666 – Entrada A, lojas 215/216</li>
+                    <li><strong>West Shopping:</strong> Estrada do Mendanha, 555 – Campo Grande – Loja 282</li>
+                    <li><strong>Norte Shopping:</strong> Av. Dom Helder Câmara, 5474 – Loja 3021 – Cachambi</li>
+                </ul>
+            ',
+        ],
+        [
+            'id' => 15,
+            'titulo' => 'Prazos Importantes (Resumo)',
+            'html' => '
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Boleto (recursos próprios):</strong> pagar em até 3 dias.</li>
+                    <li><strong>Boleto (validade portal):</strong> 2 dias úteis.</li>
+                    <li><strong>Envio de RGI e IPTU em nome do comprador:</strong> até 60 dias após a compra.</li>
+                    <li><strong>Liminar de desocupação judicial: possibilidade de 60 dias.</strong></li>
+                </ul>
+            ',
+        ],
     ];
     @endphp
 
