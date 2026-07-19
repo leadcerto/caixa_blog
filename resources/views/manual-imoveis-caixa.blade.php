@@ -396,6 +396,17 @@
         @endforeach
     </div>
 
+    @include('partials.lead-form', [
+        'pageName' => 'Manual de Compra dos Imóveis da CAIXA',
+        'heading' => 'Cadastro de Interesse de Compra',
+        'subheading' => 'Preencha o formulário e um Corretor Credenciado entrará em contato pelo WhatsApp.',
+        'declarations' => [
+            'Este manual tem caráter informativo e não substitui a leitura do edital ou da ficha do imóvel',
+            'Para compra financiada é preciso aprovação antecipada de crédito',
+            'Os imóveis da CAIXA só podem ser financiados pela CAIXA e não aceitam carta de consórcio',
+        ],
+    ])
+
 </div>
 
 @endsection

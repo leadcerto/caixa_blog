@@ -91,4 +91,13 @@ class ManualImoveisCaixaPageTest extends TestCase
         $this->assertSame(15, substr_count($content, '<details id="manual-'));
         $this->assertSame(15, substr_count($content, 'href="#manual-'));
     }
+
+    public function test_manual_page_has_lead_form_with_correct_page_name(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        $response->assertSee('Cadastro de Interesse de Compra');
+        $response->assertSee('name="page_name" value="Manual de Compra dos Imóveis da CAIXA"', false);
+        $response->assertSee('action="' . route('contato.store') . '"', false);
+    }
 }

@@ -30,4 +30,13 @@ class VendaImoveisCaixaPageTest extends TestCase
 
         $this->assertSame(1, substr_count($response->getContent(), 'details[open] .chevron'));
     }
+
+    public function test_venda_imoveis_page_still_has_lead_form_with_correct_page_name(): void
+    {
+        $response = $this->get('/venda-imoveis-caixa');
+
+        $response->assertSee('Cadastro de Interesse de Compra');
+        $response->assertSee('name="page_name" value="Venda de Imóveis da CAIXA"', false);
+        $response->assertSee('action="' . route('contato.store') . '"', false);
+    }
 }
