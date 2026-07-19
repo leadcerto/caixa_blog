@@ -4,6 +4,14 @@
 @section('meta_description', 'Manual completo e passo a passo para comprar um imóvel da CAIXA: portal, modalidades de venda, proposta, pagamento, desocupação e prazos.')
 @section('canonical_url', route('manual.imoveis'))
 
+@section('whatsapp_float')
+<x-whatsapp-float
+    image="images/whatsapp/botao-whatsapp.svg"
+    phone="5521997882950"
+    message="Olá! Gostaria de informações sobre o Manual de Compra dos Imóveis da Caixa."
+/>
+@endsection
+
 @section('content')
 
 {{-- ═══════════════════════════════════════════════════════════

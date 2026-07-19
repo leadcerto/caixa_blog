@@ -182,6 +182,9 @@
     </footer>
 
     {{-- Botão flutuante WhatsApp --}}
+    @hasSection('whatsapp_float')
+        @yield('whatsapp_float')
+    @else
     <a href="https://wa.me/5521997882950?text=Ol%C3%A1%2C%20vim%20pelo%20site%20Im%C3%B3veis%20da%20Caixa%20e%20gostaria%20de%20atendimento."
        target="_blank" rel="noopener"
        aria-label="Atendimento pelo WhatsApp"
@@ -195,6 +198,7 @@
             <div class="text-xs font-semibold opacity-90">Clique Aqui</div>
         </div>
     </a>
+    @endif
 
     {{-- Mobile menu toggle script --}}
     <script>

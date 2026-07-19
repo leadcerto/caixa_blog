@@ -29,4 +29,13 @@ class ManualImoveisCaixaPageTest extends TestCase
         $response->assertSee('https://venda.imoveisdacaixa.com.br/', false);
         $response->assertSee('Busca de Imóveis');
     }
+
+    public function test_manual_page_uses_image_whatsapp_button_not_default_pill(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        $response->assertDontSee('Atendimento Rápido');
+        $response->assertSee('botao-whatsapp.svg', false);
+        $response->assertSee('wa.me/5521997882950', false);
+    }
 }
