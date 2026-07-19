@@ -57,7 +57,22 @@ class ManualImoveisCaixaPageTest extends TestCase
         $response->assertSee('Como Encontrar Seu Imóvel');
         $response->assertSee('Cadastro e Envio da Proposta');
         $response->assertSee('Consultando Suas Propostas');
-        $this->assertSame(5, substr_count($content, '<details id="manual-'));
-        $this->assertSame(5, substr_count($content, 'href="#manual-'));
+        $this->assertSame(10, substr_count($content, '<details id="manual-'));
+        $this->assertSame(10, substr_count($content, 'href="#manual-'));
+    }
+
+    public function test_manual_page_renders_sections_six_to_ten(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+        $content = $response->getContent();
+
+        $response->assertSee('id="manual-10"', false);
+        $response->assertSee('Alterando Sua Proposta');
+        $response->assertSee('Próximos Passos Após a Compra');
+        $response->assertSee('Visita e Situação do Imóvel');
+        $response->assertSee('Desocupação do Imóvel');
+        $response->assertSee('Formas de Pagamento Aceitas');
+        $this->assertSame(10, substr_count($content, '<details id="manual-'));
+        $this->assertSame(10, substr_count($content, 'href="#manual-'));
     }
 }

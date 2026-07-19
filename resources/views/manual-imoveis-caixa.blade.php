@@ -169,6 +169,113 @@
                 <p class="mt-3 text-sm bg-green-50 border border-green-200 text-green-800 px-4 py-2 rounded-lg">⏰ <strong>Prazo do boleto:</strong> validade de 2 dias úteis — deve ser impresso e pago para iniciar a contratação.</p>
             ',
         ],
+        [
+            'id' => 6,
+            'titulo' => 'Alterando Sua Proposta',
+            'html' => '
+                <p>Em "Meus Resultados" é possível alterar composição de valores, participantes e agência de contratação.</p>
+                <ul class="list-disc list-inside space-y-2 mt-3">
+                    <li>Campos de Financiamento/FGTS só são liberados se o imóvel aceitar.</li>
+                    <li><strong>Passo 2 — Proponentes:</strong> incluir/excluir participantes (só cadastrados no ambiente CAIXA). Pode-se mudar para Pessoa Jurídica se a empresa estiver cadastrada e o proponente constar como sócio na Receita Federal. O proponente principal não pode ser excluído.</li>
+                    <li><strong>Passo 4 — Valores:</strong> a composição pode mudar, mas não o valor global da proposta.</li>
+                    <li>Pode-se alterar a agência de contratação.</li>
+                </ul>
+                <div class="mt-3 text-sm bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded-lg">
+                    <strong>⚠️ Atenção:</strong>
+                    <ul class="list-disc list-inside mt-1 space-y-1">
+                        <li>Em Leilão, não é possível alterar, incluir ou excluir proponentes — todos devem ser informados no ato da arrematação.</li>
+                        <li>A alteração da proposta não prorroga o prazo de pagamento. Fique atento à validade do boleto.</li>
+                    </ul>
+                </div>
+            ',
+        ],
+        [
+            'id' => 7,
+            'titulo' => 'Próximos Passos Após a Compra',
+            'html' => '
+                <h4 class="font-bold text-text-primary mt-2 mb-2">À vista</h4>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Pagar o boleto em até 2 dias úteis.</li>
+                    <li>Ir à agência CAIXA escolhida para retirar documentos da Escritura.</li>
+                    <li>Registrar a transferência em Cartório e trocar a titularidade junto à Prefeitura.</li>
+                </ol>
+
+                <h4 class="font-bold text-text-primary mt-5 mb-2">Financiamento e uso de FGTS</h4>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Pagar o boleto em até 2 dias úteis.</li>
+                    <li>Levar ao Correspondente CAIXA (CCA) ou agência os documentos:
+                        <ul class="list-disc list-inside mt-1 ml-4 space-y-1">
+                            <li>Proposta e boleto impressos + comprovante de pagamento</li>
+                            <li>Documento de identificação</li>
+                            <li>Comprovante de residência</li>
+                            <li>Comprovante de estado civil e regime de bens</li>
+                            <li>Comprovante de renda atualizado (últimos 2 meses)</li>
+                            <li>Declaração de Imposto de Renda</li>
+                            <li>Simulação da operação</li>
+                            <li>Documentos complementares solicitados</li>
+                        </ul>
+                    </li>
+                    <li>Com o crédito aprovado e/ou FGTS liberado, assina-se o contrato.</li>
+                    <li>Registrar o contrato em Cartório e trocar a titularidade junto à Prefeitura.</li>
+                </ol>
+            ',
+        ],
+        [
+            'id' => 8,
+            'titulo' => 'Visita e Situação do Imóvel',
+            'html' => '
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Não há como saber previamente se o imóvel está ocupado. Na maioria dos casos, o ocupante desocupa sem problemas após notificação.</li>
+                    <li>Você pode ir ao local sondar a situação, mas a CAIXA não autoriza a entrada no imóvel antes da compra.</li>
+                    <li>Vale conhecer a região — uma alternativa prática é usar o Google Maps para uma visão ampla.</li>
+                    <li>A desocupação só pode começar após o registro do imóvel e a baixa da compra, seguindo as regras da lei.</li>
+                </ul>
+            ',
+        ],
+        [
+            'id' => 9,
+            'titulo' => 'Desocupação do Imóvel',
+            'html' => '
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Estar ocupado não é impedimento — há muitos casos de desocupação amigável.</li>
+                    <li>Em leilão extrajudicial, o processo comum é:
+                        <ol class="list-decimal list-inside mt-1 ml-4 space-y-1">
+                            <li>Tentar acordo amigável via notificação extrajudicial.</li>
+                            <li>Se não houver saída, ingressar com ação de imissão na posse.</li>
+                        </ol>
+                    </li>
+                    <li>A lei garante ao arrematante o direito à imissão judicial, com possível liminar de desocupação em 60 dias, desde que a consolidação da propriedade esteja comprovada e o imóvel registrado em nome do arrematante.</li>
+                </ul>
+            ',
+        ],
+        [
+            'id' => 10,
+            'titulo' => 'Formas de Pagamento Aceitas',
+            'html' => '
+                <h4 class="font-bold text-text-primary mt-2 mb-2">Recursos próprios</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Boleto gerado automaticamente, a pagar em até 3 dias.</li>
+                    <li>Disponível para download no sistema da CAIXA (também enviamos pelo WhatsApp).</li>
+                </ul>
+
+                <h4 class="font-bold text-text-primary mt-5 mb-2">Uso de FGTS</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Faça análise prévia do valor disponível para saque e informe o valor na proposta.</li>
+                    <li>É preciso já saber seu enquadramento e o valor liberado para compra.</li>
+                    <li>Mesmo com FGTS maior que o preço, é obrigatório pagar no mínimo 5% em dinheiro (boleto); até 95% pode ser FGTS.</li>
+                </ul>
+
+                <h4 class="font-bold text-text-primary mt-5 mb-2">Financiamento SBPE</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Só aparece na ficha se o imóvel aceitar financiamento.</li>
+                    <li>Só faça proposta se não tiver pendências de crédito.</li>
+                    <li>Faça análise prévia de aprovação de crédito antes da proposta (orientação da CAIXA).</li>
+                    <li>Informe o valor de entrada (mínimo 5%) + saldo financiado.</li>
+                    <li>Se financiamento + 5% não atingir o valor de compra, aumente a entrada até igualar o valor de venda.</li>
+                    <li>Se a opção não aparece na ficha, o imóvel não permite financiamento — não há filtro de busca para isso, então continue procurando outro que informe aceitar financiamento.</li>
+                </ul>
+            ',
+        ],
     ];
     @endphp
 
