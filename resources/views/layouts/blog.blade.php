@@ -169,6 +169,11 @@
                     Inicial
                 </a>
                 <span class="text-gray-700">–</span>
+                <a href="{{ route('manual.imoveis') }}"
+                   class="text-gray-400 hover:text-white text-sm transition-colors">
+                    Manual de Compra
+                </a>
+                <span class="text-gray-700">–</span>
                 <a href="{{ route('privacidade') }}"
                    class="text-gray-400 hover:text-white text-sm transition-colors">
                     Privacidade

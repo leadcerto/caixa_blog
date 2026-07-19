@@ -46,4 +46,12 @@ class VendaImoveisCaixaPageTest extends TestCase
 
         $response->assertSee('href="' . route('manual.imoveis') . '"', false);
     }
+
+    public function test_footer_has_manual_de_compra_link(): void
+    {
+        $response = $this->get('/venda-imoveis-caixa');
+
+        $response->assertSee('Manual de Compra');
+        $response->assertSee('href="' . route('manual.imoveis') . '"', false);
+    }
 }

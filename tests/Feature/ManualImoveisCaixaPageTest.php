@@ -123,4 +123,11 @@ class ManualImoveisCaixaPageTest extends TestCase
         $this->assertSame('HowToStep', $json['step'][0]['@type']);
         $this->assertSame('O Portal de Venda de Imóveis CAIXA', $json['step'][0]['name']);
     }
+
+    public function test_manual_page_footer_has_manual_de_compra_link(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        $response->assertSee('Manual de Compra');
+    }
 }
