@@ -23,4 +23,11 @@ class VendaImoveisCaixaPageTest extends TestCase
         $response->assertSee('Atendimento Rápido');
         $response->assertSee('wa.me/5521997882950', false);
     }
+
+    public function test_venda_imoveis_page_has_accordion_css_exactly_once(): void
+    {
+        $response = $this->get('/venda-imoveis-caixa');
+
+        $this->assertSame(1, substr_count($response->getContent(), 'details[open] .chevron'));
+    }
 }

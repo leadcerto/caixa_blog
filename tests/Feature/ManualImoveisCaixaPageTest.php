@@ -38,4 +38,11 @@ class ManualImoveisCaixaPageTest extends TestCase
         $response->assertSee('botao-whatsapp.svg', false);
         $response->assertSee('wa.me/5521997882950', false);
     }
+
+    public function test_manual_page_has_accordion_chevron_css(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        $response->assertSee('details[open] .chevron', false);
+    }
 }

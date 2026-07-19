@@ -4,16 +4,6 @@
 @section('meta_description', 'Tudo sobre a Venda de Imóveis da CAIXA: benefícios exclusivos, passo a passo de compra, modalidades, perguntas frequentes e assessoria gratuita.')
 @section('canonical_url', route('venda.imoveis'))
 
-@push('head')
-<style>
-    details > summary { list-style: none; }
-    details > summary::-webkit-details-marker { display: none; }
-    details[open] .chevron { transform: rotate(180deg); }
-    .chevron { transition: transform .25s ease; }
-    details[open] summary .summary-icon { background-color: #0072C6; color: #fff; }
-</style>
-@endpush
-
 @section('content')
 
 {{-- ═══════════════════════════════════════════════════════════

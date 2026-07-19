@@ -29,6 +29,15 @@
 
     @stack('head')
 
+    {{-- Estilos compartilhados de sanfonas (accordions) --}}
+    <style>
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] .chevron { transform: rotate(180deg); }
+        .chevron { transition: transform .25s ease; }
+        details[open] summary .summary-icon { background-color: #0072C6; color: #fff; }
+    </style>
+
     {{-- Google Fonts: Inter (async — não bloqueia renderização) --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
