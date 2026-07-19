@@ -396,6 +396,25 @@
         @endforeach
     </div>
 
+    @php
+    $howToSteps = collect($manual)->map(fn($item) => [
+        '@type' => 'HowToStep',
+        'name'  => $item['titulo'],
+        'url'   => route('manual.imoveis') . '#manual-' . $item['id'],
+    ])->all();
+    @endphp
+    @push('head')
+    <script type="application/ld+json">
+{!! json_encode(array_filter([
+    '@context'    => 'https://schema.org',
+    '@type'       => 'HowTo',
+    'name'        => 'Manual de Compra dos Imóveis da CAIXA',
+    'description' => 'Passo a passo completo para comprar um imóvel da CAIXA: portal, modalidades de venda, proposta, pagamento e desocupação.',
+    'step'        => $howToSteps,
+]), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
+    @endpush
+
     <section class="bg-caixa-blue/5 border border-caixa-blue/20 rounded-2xl p-6 sm:p-8 text-center">
         <h2 class="text-xl font-bold text-text-primary mb-2">Quer entender por que vale a pena comprar um imóvel CAIXA?</h2>
         <p class="text-text-secondary mb-4">Veja o Guia Completo de Venda de Imóveis da CAIXA, com descontos, vantagens e perguntas frequentes.</p>

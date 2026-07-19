@@ -107,4 +107,20 @@ class ManualImoveisCaixaPageTest extends TestCase
 
         $response->assertSee('href="' . route('venda.imoveis') . '"', false);
     }
+
+    public function test_manual_page_has_howto_json_ld(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        preg_match('#<script type="application/ld\+json">(.*?)</script>#s', $response->getContent(), $matches);
+        $this->assertNotEmpty($matches, 'JSON-LD script tag not found on manual page');
+
+        $json = json_decode($matches[1], true);
+
+        $this->assertSame('HowTo', $json['@type']);
+        $this->assertSame('Manual de Compra dos Imóveis da CAIXA', $json['name']);
+        $this->assertCount(15, $json['step']);
+        $this->assertSame('HowToStep', $json['step'][0]['@type']);
+        $this->assertSame('O Portal de Venda de Imóveis CAIXA', $json['step'][0]['name']);
+    }
 }
