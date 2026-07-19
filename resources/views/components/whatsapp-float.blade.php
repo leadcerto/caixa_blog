@@ -14,6 +14,5 @@
     <img src="{{ asset($image) }}"
          alt="{{ $alt }}"
          width="72" height="72"
-         class="w-16 h-16 sm:w-[72px] sm:h-[72px]"
-         style="filter: drop-shadow(0 4px 14px rgba(0,0,0,0.35));">
+         style="width:72px; height:72px; filter: drop-shadow(0 4px 14px rgba(0,0,0,0.35));">
 </a>
