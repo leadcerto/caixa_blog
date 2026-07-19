@@ -39,4 +39,11 @@ class VendaImoveisCaixaPageTest extends TestCase
         $response->assertSee('name="page_name" value="Venda de Imóveis da CAIXA"', false);
         $response->assertSee('action="' . route('contato.store') . '"', false);
     }
+
+    public function test_venda_imoveis_page_links_to_manual_guide(): void
+    {
+        $response = $this->get('/venda-imoveis-caixa');
+
+        $response->assertSee('href="' . route('manual.imoveis') . '"', false);
+    }
 }

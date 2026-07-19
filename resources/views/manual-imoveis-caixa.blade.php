@@ -396,6 +396,14 @@
         @endforeach
     </div>
 
+    <section class="bg-caixa-blue/5 border border-caixa-blue/20 rounded-2xl p-6 sm:p-8 text-center">
+        <h2 class="text-xl font-bold text-text-primary mb-2">Quer entender por que vale a pena comprar um imóvel CAIXA?</h2>
+        <p class="text-text-secondary mb-4">Veja o Guia Completo de Venda de Imóveis da CAIXA, com descontos, vantagens e perguntas frequentes.</p>
+        <a href="{{ route('venda.imoveis') }}" class="inline-flex items-center gap-2 bg-caixa-blue hover:bg-caixa-blue-dark text-white font-semibold px-6 py-3 rounded-xl transition-colors">
+            Ver o Guia Completo de Venda →
+        </a>
+    </section>
+
     @include('partials.lead-form', [
         'pageName' => 'Manual de Compra dos Imóveis da CAIXA',
         'heading' => 'Cadastro de Interesse de Compra',

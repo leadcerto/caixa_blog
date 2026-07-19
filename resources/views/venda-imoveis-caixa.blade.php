@@ -492,6 +492,15 @@
     </section>
 
 
+    {{-- ── LINK CRUZADO: MANUAL DE COMPRA ───────────────────────── --}}
+    <section class="bg-caixa-blue/5 border border-caixa-blue/20 rounded-2xl p-6 sm:p-8 text-center">
+        <h2 class="text-xl font-bold text-text-primary mb-2">Já decidiu comprar?</h2>
+        <p class="text-text-secondary mb-4">Veja o Manual de Compra passo a passo: portal, modalidades, proposta, pagamento e desocupação.</p>
+        <a href="{{ route('manual.imoveis') }}" class="inline-flex items-center gap-2 bg-caixa-blue hover:bg-caixa-blue-dark text-white font-semibold px-6 py-3 rounded-xl transition-colors">
+            Ver o Manual de Compra →
+        </a>
+    </section>
+
     {{-- ── 8. FORMULÁRIO DE CADASTRO ──────────────────────────── --}}
     @include('partials.lead-form', [
         'pageName' => 'Venda de Imóveis da CAIXA',

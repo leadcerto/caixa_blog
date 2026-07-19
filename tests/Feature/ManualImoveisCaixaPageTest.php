@@ -100,4 +100,11 @@ class ManualImoveisCaixaPageTest extends TestCase
         $response->assertSee('name="page_name" value="Manual de Compra dos Imóveis da CAIXA"', false);
         $response->assertSee('action="' . route('contato.store') . '"', false);
     }
+
+    public function test_manual_page_links_to_venda_imoveis_guide(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        $response->assertSee('href="' . route('venda.imoveis') . '"', false);
+    }
 }
