@@ -45,4 +45,19 @@ class ManualImoveisCaixaPageTest extends TestCase
 
         $response->assertSee('details[open] .chevron', false);
     }
+
+    public function test_manual_page_renders_first_five_sections(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+        $content = $response->getContent();
+
+        $response->assertSee('id="manual-1"', false);
+        $response->assertSee('O Portal de Venda de Imóveis CAIXA');
+        $response->assertSee('Modalidades de Venda');
+        $response->assertSee('Como Encontrar Seu Imóvel');
+        $response->assertSee('Cadastro e Envio da Proposta');
+        $response->assertSee('Consultando Suas Propostas');
+        $this->assertSame(5, substr_count($content, '<details id="manual-'));
+        $this->assertSame(5, substr_count($content, 'href="#manual-'));
+    }
 }
