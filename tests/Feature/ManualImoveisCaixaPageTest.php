@@ -101,13 +101,6 @@ class ManualImoveisCaixaPageTest extends TestCase
         $response->assertSee('action="' . route('contato.store') . '"', false);
     }
 
-    public function test_manual_page_links_to_venda_imoveis_guide(): void
-    {
-        $response = $this->get('/manual-imoveis-caixa');
-
-        $response->assertSee('href="' . route('venda.imoveis') . '"', false);
-    }
-
     public function test_manual_page_has_howto_json_ld(): void
     {
         $response = $this->get('/manual-imoveis-caixa');
@@ -129,5 +122,46 @@ class ManualImoveisCaixaPageTest extends TestCase
         $response = $this->get('/manual-imoveis-caixa');
 
         $response->assertSee('Manual de Compra');
+    }
+
+    public function test_manual_page_includes_merged_venda_content(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        $response->assertSee('Descontos Agressivos');
+        $response->assertSee('Perguntas Frequentes');
+        $response->assertSee('Débitos Pós-Venda', false);
+        $response->assertSee('Guia Completo de Compra');
+        $response->assertSee('Modalidades de Venda');
+        $response->assertSee('Assessoria Gratuita — Corretor Credenciado CAIXA', false);
+        $response->assertSee('Leonardo Leão');
+    }
+
+    public function test_manual_page_has_enriched_hero_with_venda_subtitle_and_second_cta(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        $response->assertSee('até 70% de desconto', false);
+        $response->assertSee('Quero ser atendido gratuitamente');
+        $response->assertSee('href="#cadastro"', false);
+    }
+
+    public function test_manual_page_has_treinamento_cta(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+
+        $response->assertSee('Quer lucrar com Flipping Imobiliário?');
+        $response->assertSee('Ver o Treinamento');
+    }
+
+    public function test_manual_page_has_exactly_one_lead_form_and_no_self_referential_cross_links(): void
+    {
+        $response = $this->get('/manual-imoveis-caixa');
+        $content = $response->getContent();
+
+        $this->assertSame(1, substr_count($content, 'id="cadastro"'));
+        $response->assertSee('Este manual tem caráter informativo', false);
+        $response->assertDontSee('Já decidiu comprar?');
+        $response->assertDontSee('Quer entender por que vale a pena comprar um imóvel CAIXA?');
     }
 }

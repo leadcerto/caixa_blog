@@ -21,7 +21,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
-Route::get('/venda-imoveis-caixa', fn() => view('venda-imoveis-caixa'))->name('venda.imoveis');
+Route::redirect('/venda-imoveis-caixa', '/manual-imoveis-caixa', 301);
 Route::get('/manual-imoveis-caixa', fn() => view('manual-imoveis-caixa'))->name('manual.imoveis');
 Route::get('/politica-de-privacidade', fn() => view('politica-de-privacidade'))->name('privacidade');
 Route::post('/contato', [ContactController::class, 'store'])->name('contato.store');
